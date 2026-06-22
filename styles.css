@@ -2,9 +2,9 @@
   --bg: #0d0d12;
   --bg2: #1e1e1e;
   --text: #f5f5f7;
-  --muted: #969aa9;
+  --muted: #b3b7c4;
   --accent: #cf82ff;
-  --accent2: #6c8cff;
+  --accent2: #bf6cff;
   --accent3: #720ab3;
   --pill-border: #9aa0b4;
   --warn: #ffd166;
@@ -27,7 +27,7 @@ body {
 }
 
 body {
-  background: #1e1e1e;
+  background: #413041;
   color: var(--text);
   font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
@@ -103,7 +103,7 @@ body {
   object-fit: cover;
   border-radius: 50%;
   border: 3px solid var(--accent);
-  box-shadow: 0 0 60px rgba(108, 140, 255, 0.5);
+  box-shadow: 0 0 60px rgba(194, 108, 255, 0.5);
   animation: float 5s ease-in-out infinite;
 }
 
@@ -178,7 +178,7 @@ body {
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 24px rgba(207, 130, 255, 0.5);
+  box-shadow: 0 0 24px rgba(178, 134, 205, 0.5);
 }
 
 @media (max-width: 600px) {
