@@ -9,11 +9,31 @@
   var confettiBtn = $("#confettiBtn");
   var visitorCount = $("#visitorCount");
 
-  // ---- Visitor counter (persisted locally) ----
-  var count = parseInt(localStorage.getItem("nikitad_count") || "0", 10) + 1;
-  localStorage.setItem("nikitad_count", String(count));
-  var victimNo = "#" + String(count).padStart(6, "0");
-  visitorCount.textContent = victimNo;
+  // ---- Visitor counter (global, shared across all visitors) ----
+  // GitHub Pages serves static files only, so a true global count needs an
+  // external store. We use Abacus (https://jasoncameron.dev/abacus/), a free,
+  // no-signup, CORS-enabled hit counter (the successor to CountAPI). It
+  // auto-creates the counter on the first hit and returns { "value": N }.
+  // If the request fails (offline, blocked, rate-limited) we fall back to a
+  // per-device count so the badge still shows something.
+  var COUNTER_NS = "litovn.github.io"; // namespace = your domain
+  var COUNTER_KEY = "visits";
+
+  function renderVictim(n) {
+    visitorCount.textContent = "#" + String(n).padStart(6, "0");
+  }
+
+  fetch("https://abacus.jasoncameron.dev/hit/" + COUNTER_NS + "/" + COUNTER_KEY)
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      if (!data || typeof data.value !== "number") throw new Error("bad response");
+      renderVictim(data.value);
+    })
+    .catch(function () {
+      var local = parseInt(localStorage.getItem("nikitad_count") || "0", 10) + 1;
+      localStorage.setItem("nikitad_count", String(local));
+      renderVictim(local);
+    });
 
   // ---- Confetti engine (self-contained canvas) ----
   var canvas = $("#confetti");

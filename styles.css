@@ -88,13 +88,12 @@ body {
   font-weight: 800;
   letter-spacing: -1px;
   margin: 0;
-  text-shadow: 0 0 24px rgba(207, 130, 255, 0.45);
 }
 
 .hero__subtitle {
   color: var(--muted);
   font-weight: 400;
-  max-width: 36ch;
+  max-width: 100ch;
   margin: 0;
 }
 
